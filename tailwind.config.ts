@@ -1,15 +1,23 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
+import { withUt } from "uploadthing/tw";
 
-const config = {
+const config = withUt({
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./src/**/*.{ts,tsx,mdx}",
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
+    screens: {
+      tablet: "470px",
+      minLaptop: "790px",
+      laptop: "990px",
+      desktop: "1280px",
+    },
     container: {
       center: true,
       padding: "2rem",
@@ -18,7 +26,15 @@ const config = {
       },
     },
     extend: {
+      backgroundImage: {
+        svg: "url('https://assets.website-files.com/5e865e09d8efa3310676b585/5e865e09d8efa3345876b5c4_Button%20Wave.svg')",
+      },
       colors: {
+        aliceBlue: "#F5FBFC",
+        coral: "#FF8946",
+        heading: "#191B22",
+        paragraph: "#546285",
+        brand: "#35B8BE",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -75,6 +91,6 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+}) satisfies Config;
 
-export default config
+export default config;

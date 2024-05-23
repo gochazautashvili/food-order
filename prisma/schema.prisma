@@ -1,0 +1,31 @@
+generator client {
+    provider        = "prisma-client-js"
+    previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+    provider  = "postgresql"
+    url       = env("POSTGRES_PRISMA_URL")
+    directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model Products {
+    id          Int    @id @unique @default(autoincrement())
+    title       String
+    description String
+    price       String
+    information String
+    reviews     String
+    type        String
+    image       String
+}
+
+model Cart {
+    id        Int    @id @unique @default(autoincrement())
+    productId Int
+    userId    String
+    title     String
+    price     String
+    image     String
+    quantity  Int
+}
