@@ -24,7 +24,7 @@ const Home = async ({ searchParams }: { searchParams: { q: string } }) => {
             </h1>
             <p className="mb-[55px] mt-5 text-paragraph text-center laptop:text-start">
               Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
+              industry. Lorem Ipsum has been the industry&apos;s standard dummy text
               ever since the 1500.
             </p>
             <LinkButton link="/order">Place an Order</LinkButton>
