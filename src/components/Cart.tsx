@@ -11,14 +11,14 @@ const CartItem = dynamic(() => import("./CartItem"), {
 });
 
 const Cart = ({ products }: { products: CartPropsType[] | undefined }) => {
-  if (!products) return;
-
   const [cart, setCart] = useState(false);
   const handelExitCart = (e: MouseEvent<HTMLDivElement>) => {
     if (e.currentTarget.id === "menu-wrapper") {
       setCart(false);
     }
   };
+
+  if (!products) return;
 
   let totalPrice = 0;
 
