@@ -24,7 +24,7 @@ export const AddInCart = async (productId: number, quantity: number) => {
       where: { productId },
     });
 
-    if (existProduct) {
+    if (existProduct && existProduct.userId === userId) {
       await db.cart.update({
         where: { id: existProduct.id },
         data: { quantity: existProduct.quantity + quantity },
