@@ -21,7 +21,7 @@ const CompanyPage = () => {
           </h1>
           <p className="mb-[30px] tablet:mb-[50px] text-sm tablet:text-[16px] text-center laptop:text-start">
             Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
+            industry. Lorem Ipsum has been the industry&apos;s standard dummy text
             ever since the 1500.
           </p>
           <LinkButton link="/company">Learn about us</LinkButton>
