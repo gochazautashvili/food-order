@@ -68,6 +68,7 @@ const Cart = ({ products }: { products: CartPropsType[] | undefined }) => {
               <CartItem
                 key={item.id}
                 id={item.id}
+                productId={item.productId}
                 price={item.price}
                 title={item.title}
                 image={item.image}

@@ -8,6 +8,7 @@ export type ProductType = {
 
 export type CartPropsType = {
   id: number;
+  productId: number;
   title: string;
   price: string;
   image: string;

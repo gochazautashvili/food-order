@@ -6,7 +6,14 @@ import Image from "next/image";
 import { ChangeEvent, useTransition } from "react";
 import { toast } from "react-toastify";
 
-const CartItem = ({ id, title, price, image, quantity }: CartPropsType) => {
+const CartItem = ({
+  id,
+  title,
+  price,
+  image,
+  quantity,
+  productId,
+}: CartPropsType) => {
   const [isPending, startTransition] = useTransition();
 
   const handleDeleteItem = () => {
@@ -23,11 +30,13 @@ const CartItem = ({ id, title, price, image, quantity }: CartPropsType) => {
   };
 
   const handleChangeQuantity = (e: ChangeEvent<HTMLInputElement>) => {
-    UpdateProductQuantity(id, Number(e.currentTarget.value), price).then(
-      (res) => {
-        if (res.error) toast.error(res.error);
-      }
-    );
+    UpdateProductQuantity(
+      id,
+      Number(e.currentTarget.value),
+      productId
+    ).then((res) => {
+      if (res.error) toast.error(res.error);
+    });
   };
 
   return (

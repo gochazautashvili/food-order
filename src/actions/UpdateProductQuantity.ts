@@ -5,9 +5,9 @@ import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 
 export const UpdateProductQuantity = async (
-  productId: number,
+  id: number,
   quantity: number,
-  price: string
+  productId: number
 ) => {
   const { userId } = auth();
 
@@ -15,8 +15,16 @@ export const UpdateProductQuantity = async (
 
   try {
     const existProduct = await db.cart.findFirst({
+      where: { id },
+    });
+
+    const product = await db.products.findUnique({
       where: { id: productId },
     });
+
+    if (!product) {
+      return { error: "Invalid Product" };
+    }
 
     if (existProduct?.userId !== userId) {
       return { error: "This Is Not You Or Something Went Wrong!" };
@@ -24,7 +32,7 @@ export const UpdateProductQuantity = async (
 
     await db.cart.update({
       where: { id: existProduct.id },
-      data: { quantity, price: (Number(price) * quantity).toString() },
+      data: { quantity, price: (Number(product.price) * quantity).toString() },
     });
 
     revalidatePath("/");
