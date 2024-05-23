@@ -1,8 +1,9 @@
 "use client";
 import { DeleteCartItemById } from "@/actions/DeleteCartItem";
+import { UpdateProductQuantity } from "@/actions/UpdateProductQuantity";
 import { CartPropsType } from "@/types/types";
 import Image from "next/image";
-import { useTransition } from "react";
+import { ChangeEvent, useTransition } from "react";
 import { toast } from "react-toastify";
 
 const CartItem = ({ id, title, price, image, quantity }: CartPropsType) => {
@@ -19,6 +20,14 @@ const CartItem = ({ id, title, price, image, quantity }: CartPropsType) => {
         }
       });
     });
+  };
+
+  const handleChangeQuantity = (e: ChangeEvent<HTMLInputElement>) => {
+    UpdateProductQuantity(id, Number(e.currentTarget.value), price).then(
+      (res) => {
+        if (res.error) toast.error(res.error);
+      }
+    );
   };
 
   return (
@@ -52,6 +61,7 @@ const CartItem = ({ id, title, price, image, quantity }: CartPropsType) => {
           className="w-[60px] h-9 border-gray-400 border outline-none pl-2 bg-[#fafafa] rounded"
           type="number"
           title="quantity"
+          onChange={handleChangeQuantity}
           defaultValue={quantity}
           min={1}
         />
