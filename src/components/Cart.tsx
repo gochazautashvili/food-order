@@ -11,12 +11,20 @@ const CartItem = dynamic(() => import("./CartItem"), {
 });
 
 const Cart = ({ products }: { products: CartPropsType[] | undefined }) => {
+  if (!products) return;
+
   const [cart, setCart] = useState(false);
   const handelExitCart = (e: MouseEvent<HTMLDivElement>) => {
     if (e.currentTarget.id === "menu-wrapper") {
       setCart(false);
     }
   };
+
+  let totalPrice = 0;
+
+  for (let i = 0; i < products.length; i++) {
+    totalPrice += Number(products[i].price);
+  }
 
   return (
     <div>
@@ -73,7 +81,9 @@ const Cart = ({ products }: { products: CartPropsType[] | undefined }) => {
           <div className="py-4 px-6">
             <div className="flex items-center justify-between mb-4">
               <h1 className="text-[#7e828f]">Subtotal</h1>
-              <h1 className="text-[#191b22] font-bold">$ 22.00 USD</h1>
+              <h1 className="text-[#191b22] font-bold">
+                $ {totalPrice.toFixed(2)} USD
+              </h1>
             </div>
             <Button className="bg-brand w-full h-[45px] rounded text-sm hover:bg-brand">
               Continue to Checkout

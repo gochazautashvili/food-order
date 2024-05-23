@@ -27,7 +27,12 @@ export const AddInCart = async (productId: number, quantity: number) => {
     if (existProduct && existProduct.userId === userId) {
       await db.cart.update({
         where: { id: existProduct.id },
-        data: { quantity: existProduct.quantity + quantity },
+        data: {
+          quantity: existProduct.quantity + quantity,
+          price: (
+            Number(existProduct.price) + Number(product.price)
+          ).toString(),
+        },
       });
 
       revalidatePath("/");
