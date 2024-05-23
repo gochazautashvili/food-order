@@ -24,8 +24,8 @@ const Home = async ({ searchParams }: { searchParams: { q: string } }) => {
             </h1>
             <p className="mb-[55px] mt-5 text-paragraph text-center laptop:text-start">
               Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry&apos;s standard dummy text
-              ever since the 1500.
+              industry. Lorem Ipsum has been the industry&apos;s standard dummy
+              text ever since the 1500.
             </p>
             <LinkButton link="/order">Place an Order</LinkButton>
             <div className="mt-[30px] flex flex-col items-center laptop:items-start">
@@ -52,7 +52,7 @@ const Home = async ({ searchParams }: { searchParams: { q: string } }) => {
         href="/company"
         buttonText="Learn about us"
         title="The home offresh products"
-        desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500."
+        desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500."
       />
       <section className="flex flex-col items-center my-[100px] w-full max-w-[1200px] mx-auto px-4">
         <h1 className="text-brand tablet:text-[55px] mb-14 font-bold text-[45px]">
@@ -141,8 +141,8 @@ const Home = async ({ searchParams }: { searchParams: { q: string } }) => {
           </h1>
           <p className="mt-5 mb-[50px] text-[#546285] text-center laptop:text-start">
             Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry&apos;s standard dummy text
-            ever since the 1500.
+            industry. Lorem Ipsum has been the industry&apos;s standard dummy
+            text ever since the 1500.
           </p>
           <LinkButton link="/faq">See our FAQ</LinkButton>
         </div>
@@ -152,7 +152,7 @@ const Home = async ({ searchParams }: { searchParams: { q: string } }) => {
         href="/"
         buttonText="Ph. +61 233 2333"
         title="Call our store and takeaway when it suits you best."
-        desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500."
+        desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500."
       />
       <Support />
     </main>
