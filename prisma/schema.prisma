@@ -25,7 +25,7 @@ model Cart {
     productId Int
     userId    String
     title     String
-    price     String
+    price     Int
     image     String
     quantity  Int
 }

@@ -10,7 +10,7 @@ export type CartPropsType = {
   id: number;
   productId: number;
   title: string;
-  price: string;
+  price: number;
   image: string;
   quantity: number;
 };

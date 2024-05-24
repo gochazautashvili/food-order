@@ -29,10 +29,7 @@ export const AddInCart = async (productId: number, quantity: number) => {
         where: { id: existProduct.id },
         data: {
           quantity: existProduct.quantity + quantity,
-          price: (
-            Number(product.price) *
-            (existProduct.quantity + quantity)
-          ).toString(),
+          price: Number(product.price) * (existProduct.quantity + quantity),
         },
       });
 
@@ -43,7 +40,7 @@ export const AddInCart = async (productId: number, quantity: number) => {
     await db.cart.create({
       data: {
         title: product.title,
-        price: (Number(product.price) * quantity).toString(),
+        price: Number(product.price) * quantity,
         image: product.image,
         productId: product.id,
         userId: userId,

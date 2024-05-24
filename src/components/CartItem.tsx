@@ -15,6 +15,7 @@ const CartItem = ({
   productId,
 }: CartPropsType) => {
   const [isPending, startTransition] = useTransition();
+  const [isPriceLoading, startTransitionPrice] = useTransition();
 
   const handleDeleteItem = () => {
     startTransition(() => {
@@ -30,12 +31,11 @@ const CartItem = ({
   };
 
   const handleChangeQuantity = (e: ChangeEvent<HTMLInputElement>) => {
-    UpdateProductQuantity(
-      id,
-      Number(e.currentTarget.value),
-      productId
-    ).then((res) => {
-      if (res.error) toast.error(res.error);
+    const quantity = Number(e.currentTarget.value);
+    startTransitionPrice(() => {
+      UpdateProductQuantity(id, quantity, productId).then((res) => {
+        if (res.error) toast.error(res.error);
+      });
     });
   };
 
@@ -55,7 +55,9 @@ const CartItem = ({
         />
         <div>
           <h1 className="text-[#333333] text-sm font-bold">{title}</h1>
-          <p className="text-[#333333] text-sm ">$ {price} USD</p>
+          <p className="text-[#333333] text-sm ">
+            $ {isPriceLoading ? "Wait..." : price} USD
+          </p>
           <button
             disabled={isPending}
             onClick={handleDeleteItem}
