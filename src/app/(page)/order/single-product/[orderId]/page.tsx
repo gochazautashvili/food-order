@@ -23,6 +23,8 @@ const page = async ({ params, searchParams }: Params) => {
   );
   const product = await getSingleProductById(Number(params.orderId));
 
+  if (!product) return <h1>Product Is Defined</h1>;
+
   return (
     <main>
       <Hero text={content} />
@@ -30,7 +32,7 @@ const page = async ({ params, searchParams }: Params) => {
         <div>
           <Image
             className="rounded-3xl object-cover w-full bg-gray-500"
-            src={product?.image!}
+            src={product?.image}
             alt="burger"
             width={701}
             height={701}
