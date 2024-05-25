@@ -3,7 +3,7 @@ import { DeleteCartItemById } from "@/actions/DeleteCartItem";
 import { UpdateProductQuantity } from "@/actions/UpdateProductQuantity";
 import { CartPropsType } from "@/types/types";
 import Image from "next/image";
-import { ChangeEvent, useTransition } from "react";
+import { ChangeEvent, useOptimistic, useTransition } from "react";
 import { toast } from "react-toastify";
 
 const CartItem = ({
@@ -15,6 +15,11 @@ const CartItem = ({
   productId,
 }: CartPropsType) => {
   const [isPending, startTransition] = useTransition();
+  const [isPendingOP, startTransitionOP] = useTransition();
+  const [quantityOP, setQuantityOP] = useOptimistic(
+    quantity,
+    (state, newQuantity: number) => (state = newQuantity)
+  );
   const handleDeleteItem = () => {
     startTransition(() => {
       DeleteCartItemById(id).then((res) => {
@@ -30,7 +35,9 @@ const CartItem = ({
 
   const handleChangeQuantity = (e: ChangeEvent<HTMLInputElement>) => {
     const quantity = Number(e.currentTarget.value);
-
+    startTransitionOP(() => {
+      setQuantityOP(quantity);
+    });
     UpdateProductQuantity(id, quantity, productId).then((res) => {
       if (res.error) toast.error(res.error);
     });
@@ -52,7 +59,7 @@ const CartItem = ({
         />
         <div>
           <h1 className="text-[#333333] text-sm font-bold">{title}</h1>
-          <p className="text-[#333333] text-sm ">$ {price * quantity} USD</p>
+          <p className="text-[#333333] text-sm ">$ {price * quantityOP} USD</p>
           <button
             disabled={isPending}
             onClick={handleDeleteItem}
@@ -68,7 +75,7 @@ const CartItem = ({
           type="number"
           title="quantity"
           onChange={handleChangeQuantity}
-          defaultValue={quantity}
+          value={quantityOP}
           min={1}
         />
       </div>

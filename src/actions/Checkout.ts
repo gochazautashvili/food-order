@@ -26,7 +26,9 @@ export const Checkout = async () => {
 
     const data = await res.json();
 
-    return { success: "Success", url: data };
+    if (data.error) return { error: data.error };
+
+    return { success: "Success", url: data.url };
   } catch (error) {
     return { error: "Something Went Wrong!" };
   }

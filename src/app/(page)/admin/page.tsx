@@ -13,9 +13,9 @@ const Form = dynamic(() => import("./Form"), {
 const Admin = async () => {
   const admin = await getAdmin();
 
-  // if (!admin) {
-  //   redirect("/");
-  // }
+  if (!admin) {
+    redirect("/");
+  }
 
   return (
     <main>

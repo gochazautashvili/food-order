@@ -34,7 +34,7 @@ const Cart = ({ products }: { products: CartPropsType[] | undefined }) => {
       Checkout().then((res) => {
         if (res.error) toast.error(res.error);
 
-        window.location = res?.url;
+        if (res.success) window.location = res?.url;
       });
     });
   };

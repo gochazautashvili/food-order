@@ -27,8 +27,12 @@ export async function POST(req: NextRequest) {
       cancel_url: "https://food-order-vibe.vercel.app/order",
     });
 
-    return NextResponse.json(session.url);
+    console.log(session.url);
+
+    return NextResponse.json({ url: session.url });
   } catch (error) {
-    return NextResponse.json("/");
+    console.log(error);
+
+    return NextResponse.json({ error: "!" });
   }
 }
