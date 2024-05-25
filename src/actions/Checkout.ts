@@ -16,7 +16,7 @@ export const Checkout = async () => {
   if (!product) return { error: "Cart Is Empty" };
 
   try {
-    const res = await fetch("http://localhost:3000/api/webhook", {
+    const res = await fetch("https://food-order-vibe.vercel.app/api/webhook", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -23,8 +23,8 @@ export async function POST(req: NextRequest) {
           quantity: product.quantity,
         };
       }),
-      success_url: "http://localhost:3000",
-      cancel_url: "http://localhost:3000/order",
+      success_url: "https://food-order-vibe.vercel.app",
+      cancel_url: "https://food-order-vibe.vercel.app/order",
     });
 
     return NextResponse.json(session.url);
