@@ -28,6 +28,10 @@ export const Checkout = async () => {
 
     if (data.error) return { error: data.error };
 
+    await db.cart.deleteMany({
+      where: { userId },
+    });
+
     return { success: "Success", url: data.url };
   } catch (error) {
     return { error: "Something Went Wrong!" };
