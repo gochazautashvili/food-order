@@ -21,7 +21,6 @@ const page = async ({ params, searchParams }: Params) => {
       Burger Dreams
     </p>
   );
-
   const product = await getSingleProductById(Number(params.orderId));
 
   return (
@@ -31,12 +30,10 @@ const page = async ({ params, searchParams }: Params) => {
         <div>
           <Image
             className="rounded-3xl object-cover w-full bg-gray-500"
-            src={product?.image || ""}
+            src={product?.image!}
             alt="burger"
             width={701}
             height={701}
-            loading="eager"
-            priority
           />
         </div>
         <div className="minLaptop:w-1/2">
