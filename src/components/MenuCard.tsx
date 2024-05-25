@@ -1,7 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ProductType } from "@/types/types";
-import AddCartButton from "./ui/AddCartButton";
+import dynamic from "next/dynamic";
+const AddCartButton = dynamic(() => import("./ui/AddCartButton"), {
+  ssr: false,
+  loading: () => <h1>Loading...</h1>,
+});
 
 const MenuCard = ({ id, title, description, price, image }: ProductType) => {
   return (

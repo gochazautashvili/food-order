@@ -2,6 +2,7 @@ import BrowseMenu from "@/components/BrowseMenu";
 import Hero from "@/components/Hero";
 import LinkButton from "@/components/ui/LinkButton";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Suspense } from "react";
 
 const OrderPage = async ({
   searchParams,
@@ -60,10 +61,12 @@ const OrderPage = async ({
           Drinks
         </LinkButton>
       </div>
-      <BrowseMenu
-        query={searchParams.q}
-        page={Number(searchParams.page) || 0}
-      />
+      <Suspense fallback={"Loading..."}>
+        <BrowseMenu
+          query={searchParams.q}
+          page={Number(searchParams.page) || 0}
+        />
+      </Suspense>
       <div className="flex flex-wrap gap-4 justify-center max-w-[350px] mx-auto">
         {Number(searchParams.page) > 0 && (
           <LinkButton
