@@ -29,15 +29,13 @@ const page = async ({ params, searchParams }: Params) => {
     <main>
       <Hero text={content} />
       <section className="minLaptop:flex gap-x-10 w-full max-w-[1200px] mx-auto px-4 py-[50px] minLaptop:py-[100px]">
-        <div>
-          <Image
-            className="rounded-3xl object-cover w-full bg-gray-500"
-            src={product?.image}
-            alt="burger"
-            width={701}
-            height={701}
-          />
-        </div>
+        <Image
+          className="rounded-3xl object-cover w-full minLaptop:w-1/2 minLaptop:max-w-[578px] max-w-[701px] bg-gray-500"
+          src={product?.image}
+          alt="burger"
+          width={701}
+          height={701}
+        />
         <div className="minLaptop:w-1/2">
           <div>
             <h1 className="mt-8 mb-2 minLaptop:mt-0 font-bold text-[40px] text-[#191b22]">
