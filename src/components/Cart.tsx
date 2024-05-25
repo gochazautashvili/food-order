@@ -1,10 +1,12 @@
 "use client";
 import { ShoppingCart } from "lucide-react";
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useState, useTransition } from "react";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CartPropsType } from "@/types/types";
 import dynamic from "next/dynamic";
+import { Checkout } from "@/actions/Checkout";
+import { toast } from "react-toastify";
 const CartItem = dynamic(() => import("./CartItem"), {
   ssr: false,
   loading: () => <h1>Loading...</h1>,
@@ -12,19 +14,30 @@ const CartItem = dynamic(() => import("./CartItem"), {
 
 const Cart = ({ products }: { products: CartPropsType[] | undefined }) => {
   const [cart, setCart] = useState(false);
+  const [isPending, startTransition] = useTransition();
   const handelExitCart = (e: MouseEvent<HTMLDivElement>) => {
     if (e.currentTarget.id === "menu-wrapper") {
       setCart(false);
     }
   };
 
-  if (!products) return;
-
   let totalPrice = 0;
 
-  for (let i = 0; i < products.length; i++) {
-    totalPrice += Number(products[i].price);
+  if (products) {
+    for (let i = 0; i < products.length; i++) {
+      totalPrice += Number(products[i].price) * products[i].quantity;
+    }
   }
+
+  const handleCheckout = () => {
+    startTransition(() => {
+      Checkout().then((res) => {
+        if (res.error) toast.error(res.error);
+
+        window.location = res?.url;
+      });
+    });
+  };
 
   return (
     <div>
@@ -86,8 +99,11 @@ const Cart = ({ products }: { products: CartPropsType[] | undefined }) => {
                 $ {totalPrice.toFixed(2)} USD
               </h1>
             </div>
-            <Button className="bg-brand w-full h-[45px] rounded text-sm hover:bg-brand">
-              Continue to Checkout
+            <Button
+              onClick={handleCheckout}
+              className="bg-brand w-full h-[45px] rounded text-sm hover:bg-brand"
+            >
+              {isPending ? "Loading..." : "Continue to Checkout"}
             </Button>
           </div>
         </div>

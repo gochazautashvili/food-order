@@ -32,7 +32,7 @@ export const UpdateProductQuantity = async (
 
     await db.cart.update({
       where: { id: existProduct.id },
-      data: { quantity, price: Number(product.price) * quantity },
+      data: { quantity },
     });
 
     revalidatePath("/");
