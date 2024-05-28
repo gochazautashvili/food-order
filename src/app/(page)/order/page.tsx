@@ -61,7 +61,7 @@ const OrderPage = async ({
           Drinks
         </LinkButton>
       </div>
-      <Suspense fallback={"Loading..."}>
+      <Suspense key={searchParams.q} fallback={"Loading..."}>
         <BrowseMenu
           query={searchParams.q}
           page={Number(searchParams.page) || 0}

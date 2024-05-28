@@ -121,7 +121,7 @@ const Home = async ({ searchParams }: { searchParams: { q: string } }) => {
               Drinks
             </LinkButton>
           </div>
-          <Suspense fallback={"Loading..."}>
+          <Suspense key={searchParams.q} fallback={"Loading..."}>
             <BrowseMenu query={searchParams.q || "burger"} page={0} />
           </Suspense>
           <LinkButton className="mt-[30px] translate-y-[30px]" link="/order">
