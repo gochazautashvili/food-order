@@ -1,5 +1,6 @@
 import BrowseMenu from "@/components/BrowseMenu";
 import Hero from "@/components/Hero";
+import Loading from "@/components/Loading";
 import LinkButton from "@/components/ui/LinkButton";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Suspense } from "react";
@@ -61,7 +62,7 @@ const OrderPage = async ({
           Drinks
         </LinkButton>
       </div>
-      <Suspense key={searchParams.q} fallback={"Loading..."}>
+      <Suspense key={searchParams.q} fallback={<Loading />}>
         <BrowseMenu
           query={searchParams.q}
           page={Number(searchParams.page) || 0}

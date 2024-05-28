@@ -12,6 +12,7 @@ import LinkButton from "@/components/ui/LinkButton";
 import Futures from "@/components/Futures";
 import Support from "@/components/Support";
 import { Suspense } from "react";
+import Loading from "@/components/Loading";
 
 const Home = async ({ searchParams }: { searchParams: { q: string } }) => {
   return (
@@ -121,7 +122,7 @@ const Home = async ({ searchParams }: { searchParams: { q: string } }) => {
               Drinks
             </LinkButton>
           </div>
-          <Suspense key={searchParams.q} fallback={"Loading..."}>
+          <Suspense key={searchParams.q} fallback={<Loading />}>
             <BrowseMenu query={searchParams.q || "burger"} page={0} />
           </Suspense>
           <LinkButton className="mt-[30px] translate-y-[30px]" link="/order">
