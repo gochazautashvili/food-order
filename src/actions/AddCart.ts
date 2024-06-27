@@ -5,7 +5,7 @@ import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 
 export const AddInCart = async (productId: number, quantity: number) => {
-  const { userId } = await auth();
+  const { userId } = auth();
 
   if (!userId) {
     return { error: "You Need Account!" };

@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 import Support from "@/components/Support";
 import AddCartButton from "@/components/ui/AddCartButton";
 import LinkButton from "@/components/ui/LinkButton";
-import { getSingleProductById } from "@/data/product";
+import { getProductsId, getSingleProductById } from "@/data/product";
 import Image from "next/image";
 
 type Params = {
@@ -14,6 +14,16 @@ type Params = {
     q: string;
   };
 };
+
+export const revalidate = 60;
+
+export async function generateStaticParams() {
+  const orders = await getProductsId();
+
+  return orders.map((order) => ({
+    orderId: order.id.toString(),
+  }));
+}
 
 const page = async ({ params, searchParams }: Params) => {
   const content = (

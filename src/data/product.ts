@@ -23,7 +23,7 @@ export const getSingleProductById = async (id: number) => {
 };
 
 export const getUserCartProduct = async () => {
-  const { userId } = await auth();
+  const { userId } = auth();
 
   if (!userId) return { error: "Invalid User" };
 
@@ -38,4 +38,14 @@ export const getUserCartProduct = async () => {
   } catch (error) {
     return { error: "error" };
   }
+};
+
+export const getProductsId = async () => {
+  const orderId = await db.products.findMany({
+    select: {
+      id: true,
+    },
+  });
+
+  return orderId;
 };

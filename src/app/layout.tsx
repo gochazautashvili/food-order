@@ -13,6 +13,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Food Order",
   description: "food order website builded by CodeVibe - Gocha",
+  icons: "/favicon.ico",
 };
 
 export default function RootLayout({
@@ -21,17 +22,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <html lang="en" className="overflow-x-hidden">
-        <head>
-          <link rel="icon" href="/favicon.ico" sizes="any" />
-        </head>
+    <html lang="en" className="overflow-x-hidden" suppressHydrationWarning>
+      <ClerkProvider>
         <body className={inter.className}>
           <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
           {children}
           <ToastContainer position="bottom-right" />
         </body>
-      </html>
-    </ClerkProvider>
+      </ClerkProvider>
+    </html>
   );
 }
