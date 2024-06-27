@@ -22,6 +22,7 @@ export async function generateStaticParams() {
 
   return orders.map((order) => ({
     orderId: order.id.toString(),
+    revalidate: 60,
   }));
 }
 
